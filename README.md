@@ -54,6 +54,13 @@ func main() {
 
 ```
 
+## TODO
+
+- [] Blink
+- [] Scrolling
+- [] Font 8x8 more symbols
+- [] Font 4x4
+
 ## Links
 
 * Rakyll Launchpad Lib: https://github.com/rakyll/launchpad
