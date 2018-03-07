@@ -1,23 +1,13 @@
-Launchpadx is a package which helps you write text / color on your Novation Launchpad Mini.
-
-This package uses https://github.com/rakyll/launchpad
-
-
-## Usage
-
-```go
-
 package main
 
 import (
 	"fmt"
-	"math/rand"
+	"time"
 
 	"github.com/rakyll/launchpad"
 	"github.com/yesnault/launchpadx/buttons"
 	"github.com/yesnault/launchpadx/fonts"
 )
-
 
 func main() {
 	pad, err := launchpad.Open()
@@ -39,33 +29,12 @@ func main() {
 		if btn := buttons.Get(hit); btn != nil {
 			// it's a 'button'
 
-			// get a random color
-			color := fonts.Colors[rand.Intn(len(fonts.Colors))]
-
 			// display the key pressed
-			fmt.Println("pressed:", hit, "with color:", color.Name)
+			fmt.Println("pressed:", hit)
 
-			f.CharSet[btn.Name].Paint(pad, color)
+			f.CharSet[btn.Name].Blink(pad, fonts.RedFull, fonts.Off, 100*time.Millisecond, 15)
 		} else {
 			fmt.Println("pressed (not a button):", hit)
 		}
 	}
 }
-
-```
-
-## TODO
-
-- [x] Blink
-- [] Scrolling
-- [] Font 8x8 more symbols
-- [] Font 4x4
-
-## Links
-
-* Rakyll Launchpad Lib: https://github.com/rakyll/launchpad
-* Launchpad Programmer's Reference Guide: https://global.novationmusic.com/support/downloads/launchpad-programmers-reference-guide
-
-## License
-
-3-clause BSD

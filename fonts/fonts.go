@@ -1,6 +1,8 @@
 package fonts
 
 import (
+	"time"
+
 	"github.com/rakyll/launchpad"
 )
 
@@ -18,7 +20,9 @@ type Font struct {
 
 // Character represents a characters and all its hits (x, y) for behing paint
 type Character struct {
-	Hits []launchpad.Hit
+	OffsetX int
+	OffsetY int
+	Hits    []launchpad.Hit
 }
 
 // Color represent a color on launchpad mini: green and red
@@ -29,6 +33,7 @@ type Color struct {
 }
 
 var (
+	Off         = Color{Name: "off", Green: 0, Red: 0}
 	GreenLow    = Color{Name: "greenLow", Green: 1, Red: 0}
 	GreenMedium = Color{Name: "greenMedium", Green: 2, Red: 0}
 	GreenFull   = Color{Name: "greenFull", Green: 3, Red: 0}
@@ -56,12 +61,21 @@ func process(lines []string) []launchpad.Hit {
 
 // Paint colors a character on launchpad
 func (c Character) Paint(pad *launchpad.Launchpad, color Color) {
-	c.PaintOffset(pad, 0, 0, color)
+	for _, h := range c.Hits {
+		pad.Light(h.X+c.OffsetX, h.Y+c.OffsetY, color.Green, color.Red)
+	}
 }
 
-// PaintOffset colors a character on launchpad with an offset
-func (c Character) PaintOffset(pad *launchpad.Launchpad, offsetX, offetY int, color Color) {
-	for _, h := range c.Hits {
-		pad.Light(h.X, h.Y, color.Green, color.Red)
+// Blink blinks a character with two colors
+// duration int     Duration of transition between colorA and colorB
+// repeats int      Number of repetitions
+func (c Character) Blink(pad *launchpad.Launchpad, colorA, colorB Color, duration time.Duration, repeats int) {
+	for r := 0; r < repeats; r++ {
+		if r%2 == 0 {
+			c.Paint(pad, colorA)
+		} else {
+			c.Paint(pad, colorB)
+		}
+		time.Sleep(duration)
 	}
 }
