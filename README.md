@@ -54,6 +54,21 @@ func main() {
 
 ```
 
+
+## Manipulate a character
+
+```go
+// initialize the font
+f := fonts.Size8x8()
+
+// paint a character
+f.CharSet["a"].Paint(pad, fonts.GreenFull)
+
+// blink a character, 100ms transition, 15 repeats between two colors
+f.CharSet["b"].Blink(pad, fonts.RedFull, fonts.Off, 100*time.Millisecond, 15)
+
+```
+
 ## TODO
 
 - [x] Blink
