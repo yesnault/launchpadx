@@ -62,7 +62,9 @@ func process(lines []string) []launchpad.Hit {
 // Paint colors a character on launchpad
 func (c Character) Paint(pad *launchpad.Launchpad, color Color) {
 	for _, h := range c.Hits {
-		pad.Light(h.X+c.OffsetX, h.Y+c.OffsetY, color.Green, color.Red)
+		if h.X+c.OffsetX >= 0 && h.X+c.OffsetX < 8 && h.Y+c.OffsetY >= 0 && h.Y+c.OffsetY < 8 {
+			pad.Light(h.X+c.OffsetX, h.Y+c.OffsetY, color.Green, color.Red)
+		}
 	}
 }
 
@@ -76,6 +78,47 @@ func (c Character) Blink(pad *launchpad.Launchpad, colorA, colorB Color, duratio
 		} else {
 			c.Paint(pad, colorB)
 		}
+		time.Sleep(duration)
+	}
+}
+
+type Direction int
+
+const (
+	DirectionRightToLeft Direction = iota
+	DirectionLeftToRight
+	DirectionTopToBottom
+	DirectionBottomToTop
+)
+
+// Scroll scrolls a character
+// duration int     Duration of transition
+func (c Character) Scroll(pad *launchpad.Launchpad, color Color, direction Direction, duration time.Duration) {
+	var xoff, yoff int
+	switch direction {
+	case DirectionRightToLeft:
+		c.OffsetX = 8
+		xoff = -1
+	case DirectionLeftToRight:
+		c.OffsetX = -8
+		xoff = 1
+	case DirectionBottomToTop:
+		c.OffsetY = 8
+		yoff = -1
+	case DirectionTopToBottom:
+		c.OffsetY = -8
+		yoff = 1
+	}
+
+	for r := 0; r < 28; r++ {
+		if r%2 == 0 {
+			c.OffsetX += xoff
+			c.OffsetY += yoff
+			c.Paint(pad, color)
+		} else {
+			c.Paint(pad, Off)
+		}
+
 		time.Sleep(duration)
 	}
 }

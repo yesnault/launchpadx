@@ -67,14 +67,18 @@ f.CharSet["a"].Paint(pad, fonts.GreenFull)
 // blink a character, 100ms transition, 15 repeats between two colors
 f.CharSet["b"].Blink(pad, fonts.RedFull, fonts.Off, 100*time.Millisecond, 15)
 
+// Scroll a character, 500ms transition
+f.CharSet["c"].Scroll(pad, fonts.RedFull, fonts.DirectionTopToBottom, 500*time.Millisecond)
+
 ```
 
 ## TODO
 
 - [x] Blink
-- [] Scrolling
-- [] Font 8x8 more symbols
-- [] Font 4x4
+- [x] Scrolling
+- [ ] Font 8x8 more symbols
+- [ ] Font 4x4
+- [ ] Text Display
 
 ## Links
 
