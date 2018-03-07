@@ -18,6 +18,7 @@ import (
 	"github.com/yesnault/launchpadx/fonts"
 )
 
+
 func main() {
 	pad, err := launchpad.Open()
 	if err != nil {
@@ -32,22 +33,22 @@ func main() {
 	ch := pad.Listen()
 	for {
 		hit := <-ch
-        pad.Clear()
-        
-        // check if the key is a menu button : a-h, 1-8
+		pad.Clear()
+
+		// check if the key is a menu button : a-h, 1-8
 		if btn := buttons.Get(hit); btn != nil {
-            // it's a 'button'
-            
-            // get a random color
-            color := fonts.Colors[rand.Intn(len(fonts.Colors))]
-        
-            // display the key pressed
-            fmt.Println("pressed:", hit, "with color:", color.Name)
+			// it's a 'button'
+
+			// get a random color
+			color := fonts.Colors[rand.Intn(len(fonts.Colors))]
+
+			// display the key pressed
+			fmt.Println("pressed:", hit, "with color:", color.Name)
 
 			f.CharSet[btn.Name].Paint(pad, color)
 		} else {
-            fmt.Println("pressed (not a button):", hit)
-        }
+			fmt.Println("pressed (not a button):", hit)
+		}
 	}
 }
 
