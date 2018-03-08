@@ -15,7 +15,7 @@ type Size struct {
 // Font represents a font, with a size and charset
 type Font struct {
 	Size    Size
-	CharSet map[string]Character
+	CharSet map[rune]Character
 }
 
 // Character represents a characters and all its hits (x, y) for behing paint
@@ -25,6 +25,15 @@ type Character struct {
 	Hits    []launchpad.Hit
 }
 
+// Text represents a list of characters
+type Text struct {
+	OffsetX    int
+	OffsetY    int
+	Text       string
+	Direction  Direction
+	Characters []Character
+}
+
 // Color represent a color on launchpad mini: green and red
 type Color struct {
 	Name  string
@@ -32,6 +41,7 @@ type Color struct {
 	Red   int
 }
 
+// Colors
 var (
 	Off         = Color{Name: "off", Green: 0, Red: 0}
 	GreenLow    = Color{Name: "greenLow", Green: 1, Red: 0}
@@ -59,6 +69,68 @@ func process(lines []string) []launchpad.Hit {
 	return hits
 }
 
+// NewText returns a new text
+func NewText(text string, direction Direction, font Font) Text {
+	t := Text{
+		Text:       text,
+		Direction:  direction,
+		Characters: make([]Character, len(text)),
+	}
+	for i, r := range text {
+		t.Characters[i] = font.CharSet[r]
+	}
+	return t
+}
+
+// Paint colors a text on launchpad
+func (t *Text) Paint(pad *launchpad.Launchpad, color Color) {
+	for pos, c := range t.Characters {
+		switch t.Direction {
+		case DirectionLeftToRight:
+			c.OffsetX = t.OffsetX + pos*8
+		case DirectionRightToLeft:
+			c.OffsetX = t.OffsetX - pos*8
+		case DirectionTopToBottom:
+			c.OffsetY = t.OffsetY - pos*8
+		case DirectionBottomToTop:
+			c.OffsetY = t.OffsetY + pos*8
+		}
+		c.Paint(pad, color)
+	}
+}
+
+// Scroll scrolls a text
+// duration int     Duration of transition
+func (t Text) Scroll(pad *launchpad.Launchpad, color Color, direction Direction, duration time.Duration) {
+	var xoff, yoff int
+	switch direction {
+	case DirectionRightToLeft:
+		t.OffsetX = 8
+		xoff = -1
+	case DirectionLeftToRight:
+		t.OffsetX = -8
+		xoff = 1
+	case DirectionBottomToTop:
+		t.OffsetY = 8
+		yoff = -1
+	case DirectionTopToBottom:
+		t.OffsetY = -8
+		yoff = 1
+	}
+
+	for r := 0; r < len(t.Characters)*8*2+16; r++ {
+		if r%2 == 0 {
+			t.OffsetX += xoff
+			t.OffsetY += yoff
+			t.Paint(pad, color)
+			time.Sleep(duration)
+		} else {
+			t.Paint(pad, Off)
+		}
+
+	}
+}
+
 // Paint colors a character on launchpad
 func (c Character) Paint(pad *launchpad.Launchpad, color Color) {
 	for _, h := range c.Hits {
@@ -82,8 +154,10 @@ func (c Character) Blink(pad *launchpad.Launchpad, colorA, colorB Color, duratio
 	}
 }
 
+// Direction represents a direction for scrolling
 type Direction int
 
+// direction for scroll
 const (
 	DirectionRightToLeft Direction = iota
 	DirectionLeftToRight
@@ -115,10 +189,9 @@ func (c Character) Scroll(pad *launchpad.Launchpad, color Color, direction Direc
 			c.OffsetX += xoff
 			c.OffsetY += yoff
 			c.Paint(pad, color)
+			time.Sleep(duration)
 		} else {
 			c.Paint(pad, Off)
 		}
-
-		time.Sleep(duration)
 	}
 }

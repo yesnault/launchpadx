@@ -4,8 +4,8 @@ package fonts
 func Size8x8() Font {
 	return Font{
 		Size: Size{Height: 8, Width: 8},
-		CharSet: map[string]Character{
-			"a": Character{
+		CharSet: map[rune]Character{
+			'a': Character{
 				Hits: process([]string{
 					"--------",
 					"---000--",
@@ -17,7 +17,7 @@ func Size8x8() Font {
 					"--0---0-",
 				}),
 			},
-			"b": Character{
+			'b': Character{
 				Hits: process([]string{
 					"--------",
 					"--0000--",
@@ -29,7 +29,7 @@ func Size8x8() Font {
 					"--0000--",
 				}),
 			},
-			"c": Character{
+			'c': Character{
 				Hits: process([]string{
 					"--------",
 					"---000--",
@@ -41,7 +41,7 @@ func Size8x8() Font {
 					"---000--",
 				}),
 			},
-			"d": Character{
+			'd': Character{
 				Hits: process([]string{
 					"--------",
 					"--0000--",
@@ -53,7 +53,7 @@ func Size8x8() Font {
 					"--0000--",
 				}),
 			},
-			"e": Character{
+			'e': Character{
 				Hits: process([]string{
 					"--------",
 					"--00000-",
@@ -65,7 +65,7 @@ func Size8x8() Font {
 					"--00000-",
 				}),
 			},
-			"f": Character{
+			'f': Character{
 				Hits: process([]string{
 					"--------",
 					"--00000-",
@@ -77,7 +77,7 @@ func Size8x8() Font {
 					"--0-----",
 				}),
 			},
-			"g": Character{
+			'g': Character{
 				Hits: process([]string{
 					"--------",
 					"---000--",
@@ -89,7 +89,7 @@ func Size8x8() Font {
 					"---000--",
 				}),
 			},
-			"h": Character{
+			'h': Character{
 				Hits: process([]string{
 					"--------",
 					"--0---0-",
@@ -101,7 +101,7 @@ func Size8x8() Font {
 					"--0---0-",
 				}),
 			},
-			"i": Character{
+			'i': Character{
 				Hits: process([]string{
 					"--------",
 					"---000--",
@@ -113,7 +113,7 @@ func Size8x8() Font {
 					"---000--",
 				}),
 			},
-			"j": Character{
+			'j': Character{
 				Hits: process([]string{
 					"--------",
 					"----000-",
@@ -125,7 +125,7 @@ func Size8x8() Font {
 					"---00---",
 				}),
 			},
-			"k": Character{
+			'k': Character{
 				Hits: process([]string{
 					"--------",
 					"--0---0-",
@@ -137,7 +137,7 @@ func Size8x8() Font {
 					"--0---0-",
 				}),
 			},
-			"l": Character{
+			'l': Character{
 				Hits: process([]string{
 					"--------",
 					"--0-----",
@@ -149,7 +149,7 @@ func Size8x8() Font {
 					"--00000-",
 				}),
 			},
-			"m": Character{
+			'm': Character{
 				Hits: process([]string{
 					"--------",
 					"--0---0-",
@@ -161,7 +161,7 @@ func Size8x8() Font {
 					"--0---0-",
 				}),
 			},
-			"n": Character{
+			'n': Character{
 				Hits: process([]string{
 					"--------",
 					"--0---0-",
@@ -173,7 +173,7 @@ func Size8x8() Font {
 					"--0---0-",
 				}),
 			},
-			"o": Character{
+			'o': Character{
 				Hits: process([]string{
 					"--------",
 					"---000--",
@@ -185,7 +185,7 @@ func Size8x8() Font {
 					"---000--",
 				}),
 			},
-			"p": Character{
+			'p': Character{
 				Hits: process([]string{
 					"--------",
 					"--0000--",
@@ -197,7 +197,7 @@ func Size8x8() Font {
 					"--0-----",
 				}),
 			},
-			"q": Character{
+			'q': Character{
 				Hits: process([]string{
 					"--------",
 					"---000--",
@@ -209,7 +209,7 @@ func Size8x8() Font {
 					"---00-0-",
 				}),
 			},
-			"r": Character{
+			'r': Character{
 				Hits: process([]string{
 					"--------",
 					"--0000--",
@@ -221,7 +221,7 @@ func Size8x8() Font {
 					"--0---0-",
 				}),
 			},
-			"s": Character{
+			's': Character{
 				Hits: process([]string{
 					"--------",
 					"---0000-",
@@ -233,7 +233,7 @@ func Size8x8() Font {
 					"--0000--",
 				}),
 			},
-			"t": Character{
+			't': Character{
 				Hits: process([]string{
 					"--------",
 					"--00000-",
@@ -245,7 +245,7 @@ func Size8x8() Font {
 					"----0---",
 				}),
 			},
-			"u": Character{
+			'u': Character{
 				Hits: process([]string{
 					"--------",
 					"--0---0-",
@@ -257,7 +257,7 @@ func Size8x8() Font {
 					"---000--",
 				}),
 			},
-			"v": Character{
+			'v': Character{
 				Hits: process([]string{
 					"--------",
 					"--0---0-",
@@ -269,7 +269,7 @@ func Size8x8() Font {
 					"----0---",
 				}),
 			},
-			"w": Character{
+			'w': Character{
 				Hits: process([]string{
 					"--------",
 					"--0---0-",
@@ -281,7 +281,7 @@ func Size8x8() Font {
 					"---0-0--",
 				}),
 			},
-			"x": Character{
+			'x': Character{
 				Hits: process([]string{
 					"--------",
 					"--0---0-",
@@ -293,7 +293,7 @@ func Size8x8() Font {
 					"--0---0-",
 				}),
 			},
-			"y": Character{
+			'y': Character{
 				Hits: process([]string{
 					"--------",
 					"--0---0-",
@@ -305,7 +305,7 @@ func Size8x8() Font {
 					"----0---",
 				}),
 			},
-			"z": Character{
+			'z': Character{
 				Hits: process([]string{
 					"--------",
 					"--00000-",
@@ -317,7 +317,7 @@ func Size8x8() Font {
 					"--00000-",
 				}),
 			},
-			"1": Character{
+			'1': Character{
 				Hits: process([]string{
 					"--------",
 					"----0---",
@@ -329,7 +329,7 @@ func Size8x8() Font {
 					"---000--",
 				}),
 			},
-			"2": Character{
+			'2': Character{
 				Hits: process([]string{
 					"--------",
 					"---000--",
@@ -341,7 +341,7 @@ func Size8x8() Font {
 					"--00000-",
 				}),
 			},
-			"3": Character{
+			'3': Character{
 				Hits: process([]string{
 					"--------",
 					"--00000-",
@@ -353,7 +353,7 @@ func Size8x8() Font {
 					"---000--",
 				}),
 			},
-			"4": Character{
+			'4': Character{
 				Hits: process([]string{
 					"--------",
 					"-----0--",
@@ -365,7 +365,7 @@ func Size8x8() Font {
 					"-----0--",
 				}),
 			},
-			"5": Character{
+			'5': Character{
 				Hits: process([]string{
 					"--------",
 					"--00000-",
@@ -377,7 +377,7 @@ func Size8x8() Font {
 					"---000--",
 				}),
 			},
-			"6": Character{
+			'6': Character{
 				Hits: process([]string{
 					"--------",
 					"----00--",
@@ -389,7 +389,7 @@ func Size8x8() Font {
 					"---000--",
 				}),
 			},
-			"7": Character{
+			'7': Character{
 				Hits: process([]string{
 					"--------",
 					"--00000-",
@@ -401,7 +401,7 @@ func Size8x8() Font {
 					"---0----",
 				}),
 			},
-			"8": Character{
+			'8': Character{
 				Hits: process([]string{
 					"--------",
 					"---000--",
@@ -413,7 +413,7 @@ func Size8x8() Font {
 					"---000--",
 				}),
 			},
-			"9": Character{
+			'9': Character{
 				Hits: process([]string{
 					"--------",
 					"---000--",
@@ -425,7 +425,7 @@ func Size8x8() Font {
 					"---00---",
 				}),
 			},
-			"0": Character{
+			'0': Character{
 				Hits: process([]string{
 					"--------",
 					"---000--",
@@ -437,7 +437,7 @@ func Size8x8() Font {
 					"---000--",
 				}),
 			},
-			"?": Character{
+			'?': Character{
 				Hits: process([]string{
 					"--------",
 					"--000---",
@@ -449,7 +449,7 @@ func Size8x8() Font {
 					"---0----",
 				}),
 			},
-			"!": Character{
+			'!': Character{
 				Hits: process([]string{
 					"--------",
 					"----0---",
@@ -461,7 +461,7 @@ func Size8x8() Font {
 					"----0---",
 				}),
 			},
-			"|": Character{
+			'|': Character{
 				Hits: process([]string{
 					"----0---",
 					"----0---",
@@ -471,18 +471,6 @@ func Size8x8() Font {
 					"----0---",
 					"----0---",
 					"----0---",
-				}),
-			},
-			"all": Character{
-				Hits: process([]string{
-					"00000000",
-					"00000000",
-					"00000000",
-					"00000000",
-					"00000000",
-					"00000000",
-					"00000000",
-					"00000000",
 				}),
 			},
 		},
