@@ -26,8 +26,8 @@ var (
 	N4      = Button{Name: '4', Hit: launchpad.Hit{X: 3, Y: 8}}
 	N5      = Button{Name: '5', Hit: launchpad.Hit{X: 4, Y: 8}}
 	N7      = Button{Name: '6', Hit: launchpad.Hit{X: 5, Y: 8}}
-	N6      = Button{Name: '7', Hit: launchpad.Hit{X: 7, Y: 8}}
-	N8      = Button{Name: '8', Hit: launchpad.Hit{X: 6, Y: 8}}
+	N6      = Button{Name: '7', Hit: launchpad.Hit{X: 6, Y: 8}}
+	N8      = Button{Name: '8', Hit: launchpad.Hit{X: 7, Y: 8}}
 	buttons = []Button{A, B, C, D, E, F, G, H, N1, N2, N3, N4, N5, N6, N7, N8}
 )
 
