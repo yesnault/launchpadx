@@ -5,6 +5,7 @@ This package uses https://github.com/rakyll/launchpad
 
 ## Usage
 
+### Character
 ```go
 
 package main
@@ -54,6 +55,17 @@ func main() {
 
 ```
 
+### Text
+
+```go
+[...]
+
+text := fonts.NewText("foobar", fonts.DirectionLeftToRight, fonts.Size8x8())
+text.Scroll(pad, fonts.RedFull, fonts.DirectionRightToLeft, 100*time.Millisecond)
+
+[...]
+```
+
 
 ## Manipulate a character
 
@@ -78,7 +90,7 @@ f.CharSet["c"].Scroll(pad, fonts.RedFull, fonts.DirectionTopToBottom, 500*time.M
 - [x] Scrolling
 - [ ] Font 8x8 more symbols
 - [ ] Font 4x4
-- [ ] Text Display
+- [x] Text Display
 
 ## Links
 
