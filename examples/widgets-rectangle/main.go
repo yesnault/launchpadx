@@ -29,4 +29,23 @@ func main() {
 	widgets.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 8, Height: 8}.Clear(pad, 15*time.Millisecond)
 
 	time.Sleep(1 * time.Second)
+
+	// and move a rectangle
+	r := widgets.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 2, Height: 2}
+	r.Paint(pad, widgets.ColorGreenFull, 10*time.Millisecond)
+
+	time.Sleep(1 * time.Second)
+
+	r.ScrollTo(pad, launchpad.Hit{X: 6, Y: 6}, widgets.ColorGreenFull, 300*time.Millisecond)
+	time.Sleep(1 * time.Second)
+
+	r.ScrollTo(pad, launchpad.Hit{X: 1, Y: 3}, widgets.ColorYellowFull, 300*time.Millisecond)
+	time.Sleep(1 * time.Second)
+
+	r.ScrollTo(pad, launchpad.Hit{X: 5, Y: 3}, widgets.ColorYellowFull, 300*time.Millisecond)
+	time.Sleep(1 * time.Second)
+
+	r.ScrollTo(pad, launchpad.Hit{X: 3, Y: 3}, widgets.ColorRedFull, 300*time.Millisecond)
+
+	time.Sleep(1 * time.Second)
 }

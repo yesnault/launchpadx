@@ -95,6 +95,9 @@ r.Paint(pad, widgets.ColorGreenFull, 10*time.Millisecond)
 fmt.Println("Then clear rectangle with 15ms transition between each pixel")
 r.Clear(pad, 15*time.Millisecond)
 
+r2 := widgets.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 2, Height: 2}
+r2.Paint(pad, widgets.ColorGreenFull, 10*time.Millisecond)
+r2.ScrollTo(pad, launchpad.Hit{X: 6, Y: 6}, widgets.ColorGreenFull, 300*time.Millisecond)
 ```
 
 ## Links
