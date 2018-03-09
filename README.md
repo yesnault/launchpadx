@@ -89,7 +89,7 @@ f.CharSet["c"].Scroll(pad, fonts.RedFull, fonts.DirectionTopToBottom, 500*time.M
 - [x] Blink
 - [x] Scrolling
 - [ ] Font 8x8 more symbols
-- [x] Font 4x3
+- [x] Font 4x4
 - [x] Text Display
 
 ## Links

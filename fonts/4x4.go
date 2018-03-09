@@ -1,9 +1,9 @@
 package fonts
 
-// Size4x3 return a 8 per 8 pixels font
-func Size4x3() Font {
+// Size4x4 return a 8 per 8 pixels font
+func Size4x4() Font {
 	return Font{
-		Size: Size{Height: 4, Width: 3},
+		Size: Size{Height: 4, Width: 4},
 		CharSet: map[rune]Character{
 			'a': Character{
 				Hits: process([]string{

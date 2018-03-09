@@ -30,6 +30,7 @@ type Text struct {
 	OffsetX    int
 	OffsetY    int
 	Text       string
+	Font       Font
 	Direction  Direction
 	Characters []Character
 }
@@ -74,6 +75,7 @@ func NewText(text string, direction Direction, font Font) Text {
 	t := Text{
 		Text:       text,
 		Direction:  direction,
+		Font:       font,
 		Characters: make([]Character, len(text)),
 	}
 	for i, r := range text {
@@ -87,13 +89,13 @@ func (t *Text) Paint(pad *launchpad.Launchpad, color Color) {
 	for pos, c := range t.Characters {
 		switch t.Direction {
 		case DirectionLeftToRight:
-			c.OffsetX = t.OffsetX + pos*8
+			c.OffsetX = t.OffsetX + pos*t.Font.Size.Width
 		case DirectionRightToLeft:
-			c.OffsetX = t.OffsetX - pos*8
+			c.OffsetX = t.OffsetX - pos*t.Font.Size.Width
 		case DirectionTopToBottom:
-			c.OffsetY = t.OffsetY - pos*8
+			c.OffsetY = t.OffsetY - pos*t.Font.Size.Height
 		case DirectionBottomToTop:
-			c.OffsetY = t.OffsetY + pos*8
+			c.OffsetY = t.OffsetY + pos*t.Font.Size.Height
 		}
 		c.Paint(pad, color)
 	}
@@ -118,7 +120,7 @@ func (t Text) Scroll(pad *launchpad.Launchpad, color Color, direction Direction,
 		yoff = 1
 	}
 
-	for r := 0; r < len(t.Characters)*8*2+16; r++ {
+	for r := 0; r < len(t.Characters)*t.Font.Size.Width*2+16; r++ {
 		if r%2 == 0 {
 			t.OffsetX += xoff
 			t.OffsetY += yoff

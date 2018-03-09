@@ -31,10 +31,12 @@ var (
 	buttons = []Button{A, B, C, D, E, F, G, H, N1, N2, N3, N4, N5, N6, N7, N8}
 )
 
+// Equals return true if button matches with hit
 func (b Button) Equals(hit launchpad.Hit) bool {
 	return b.Hit.X == hit.X && b.Hit.Y == hit.Y
 }
 
+// Get returns a button (button a-h, 1-8), nil otherwise
 func Get(hit launchpad.Hit) *Button {
 	for _, b := range buttons {
 		if b.Equals(hit) {

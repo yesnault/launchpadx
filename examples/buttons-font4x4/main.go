@@ -19,7 +19,7 @@ func main() {
 	fmt.Println("Press a button a-h (vertical) or 1-8 (horizontal) on the launchpad")
 
 	pad.Clear()
-	f := fonts.Size4x3()
+	f := fonts.Size4x4()
 	ch := pad.Listen()
 	for {
 		hit := <-ch
