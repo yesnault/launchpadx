@@ -22,3 +22,8 @@ func (r Rectangle) Paint(pad *launchpad.Launchpad, color Color, d time.Duration)
 		}
 	}
 }
+
+// Clear paint a rectangle with colorOff
+func (r Rectangle) Clear(pad *launchpad.Launchpad, d time.Duration) {
+	r.Paint(pad, ColorOff, d)
+}

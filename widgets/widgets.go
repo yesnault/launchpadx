@@ -1,7 +1,14 @@
 package widgets
 
+import (
+	"time"
+
+	"github.com/rakyll/launchpad"
+)
+
 type widget interface {
-	Paint(color Color)
+	Paint(pad *launchpad.Launchpad, color Color, d time.Duration)
+	Clear(pad *launchpad.Launchpad, d time.Duration)
 }
 
 // Size of the font definition

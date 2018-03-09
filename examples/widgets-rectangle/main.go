@@ -24,4 +24,9 @@ func main() {
 	widgets.Rectangle{P: launchpad.Hit{X: 3, Y: 3}, Width: 2, Height: 2}.Paint(pad, widgets.ColorAmberFull, 100*time.Millisecond)
 
 	time.Sleep(1 * time.Second)
+
+	fmt.Println("Then clear all with 10ms transition betwen each pixel")
+	widgets.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 8, Height: 8}.Clear(pad, 15*time.Millisecond)
+
+	time.Sleep(1 * time.Second)
 }
