@@ -91,6 +91,10 @@ f.CharSet["c"].Scroll(pad, widgets.ColorRedFull, fonts.DirectionTopToBottom, 500
 ```go
 r := widgets.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 8, Height: 8}
 r.Paint(pad, widgets.ColorGreenFull, 10*time.Millisecond)
+
+fmt.Println("Then clear rectangle with 15ms transition between each pixel")
+r.Clear(pad, 15*time.Millisecond)
+
 ```
 
 ## Links

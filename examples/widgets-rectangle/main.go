@@ -25,7 +25,7 @@ func main() {
 
 	time.Sleep(1 * time.Second)
 
-	fmt.Println("Then clear all with 10ms transition betwen each pixel")
+	fmt.Println("Then clear all with 15ms transition between each pixel")
 	widgets.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 8, Height: 8}.Clear(pad, 15*time.Millisecond)
 
 	time.Sleep(1 * time.Second)
