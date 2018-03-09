@@ -5,8 +5,10 @@ import (
 	"time"
 
 	"github.com/rakyll/launchpad"
+
 	"github.com/yesnault/launchpadx/buttons"
 	"github.com/yesnault/launchpadx/fonts"
+	"github.com/yesnault/launchpadx/widgets"
 )
 
 func main() {
@@ -32,7 +34,7 @@ func main() {
 			// display the key pressed
 			fmt.Println("pressed:", hit)
 
-			f.CharSet[btn.Name].Blink(pad, fonts.RedFull, fonts.Off, 100*time.Millisecond, 15)
+			f.CharSet[btn.Name].Blink(pad, widgets.ColorRedFull, widgets.ColorOff, 100*time.Millisecond, 15)
 		} else {
 			fmt.Println("pressed (not a button):", hit)
 		}

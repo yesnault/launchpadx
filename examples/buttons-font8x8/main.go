@@ -5,8 +5,10 @@ import (
 	"math/rand"
 
 	"github.com/rakyll/launchpad"
+
 	"github.com/yesnault/launchpadx/buttons"
 	"github.com/yesnault/launchpadx/fonts"
+	"github.com/yesnault/launchpadx/widgets"
 )
 
 func main() {
@@ -30,7 +32,7 @@ func main() {
 			// it's a 'button'
 
 			// get a random color
-			color := fonts.Colors[rand.Intn(len(fonts.Colors))]
+			color := widgets.Colors[rand.Intn(len(widgets.Colors))]
 
 			// display the key pressed
 			fmt.Println("pressed:", hit, "with color:", color.Name)

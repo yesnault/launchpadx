@@ -3,18 +3,14 @@ package fonts
 import (
 	"time"
 
+	"github.com/yesnault/launchpadx/widgets"
+
 	"github.com/rakyll/launchpad"
 )
 
-// Size of the font definition
-type Size struct {
-	Height int
-	Width  int
-}
-
 // Font represents a font, with a size and charset
 type Font struct {
-	Size    Size
+	Size    widgets.Size
 	CharSet map[rune]Character
 }
 
@@ -34,29 +30,6 @@ type Text struct {
 	Direction  Direction
 	Characters []Character
 }
-
-// Color represent a color on launchpad mini: green and red
-type Color struct {
-	Name  string
-	Green int
-	Red   int
-}
-
-// Colors
-var (
-	Off         = Color{Name: "off", Green: 0, Red: 0}
-	GreenLow    = Color{Name: "greenLow", Green: 1, Red: 0}
-	GreenMedium = Color{Name: "greenMedium", Green: 2, Red: 0}
-	GreenFull   = Color{Name: "greenFull", Green: 3, Red: 0}
-	YellowFull  = Color{Name: "yellowFull", Green: 3, Red: 1}
-	RedLight    = Color{Name: "redLight", Green: 1, Red: 2}
-	OrangeLight = Color{Name: "orangeLight", Green: 3, Red: 2}
-	RedFull     = Color{Name: "redFull", Green: 0, Red: 3}
-	AmberFull   = Color{Name: "amberFull", Green: 2, Red: 3}
-	OrangeFull  = Color{Name: "orangeFull", Green: 3, Red: 3}
-
-	Colors = []Color{GreenLow, GreenMedium, GreenFull, YellowFull, RedLight, OrangeLight, RedFull, AmberFull, OrangeFull}
-)
 
 func process(lines []string) []launchpad.Hit {
 	hits := []launchpad.Hit{}
@@ -85,7 +58,7 @@ func NewText(text string, direction Direction, font Font) Text {
 }
 
 // Paint colors a text on launchpad
-func (t *Text) Paint(pad *launchpad.Launchpad, color Color) {
+func (t *Text) Paint(pad *launchpad.Launchpad, color widgets.Color) {
 	for pos, c := range t.Characters {
 		switch t.Direction {
 		case DirectionLeftToRight:
@@ -103,7 +76,7 @@ func (t *Text) Paint(pad *launchpad.Launchpad, color Color) {
 
 // Scroll scrolls a text
 // duration int     Duration of transition
-func (t Text) Scroll(pad *launchpad.Launchpad, color Color, direction Direction, duration time.Duration) {
+func (t Text) Scroll(pad *launchpad.Launchpad, color widgets.Color, direction Direction, duration time.Duration) {
 	var xoff, yoff int
 	switch direction {
 	case DirectionRightToLeft:
@@ -127,14 +100,14 @@ func (t Text) Scroll(pad *launchpad.Launchpad, color Color, direction Direction,
 			t.Paint(pad, color)
 			time.Sleep(duration)
 		} else {
-			t.Paint(pad, Off)
+			t.Paint(pad, widgets.ColorOff)
 		}
 
 	}
 }
 
 // Paint colors a character on launchpad
-func (c Character) Paint(pad *launchpad.Launchpad, color Color) {
+func (c Character) Paint(pad *launchpad.Launchpad, color widgets.Color) {
 	for _, h := range c.Hits {
 		if h.X+c.OffsetX >= 0 && h.X+c.OffsetX < 8 && h.Y+c.OffsetY >= 0 && h.Y+c.OffsetY < 8 {
 			pad.Light(h.X+c.OffsetX, h.Y+c.OffsetY, color.Green, color.Red)
@@ -145,7 +118,7 @@ func (c Character) Paint(pad *launchpad.Launchpad, color Color) {
 // Blink blinks a character with two colors
 // duration int     Duration of transition between colorA and colorB
 // repeats int      Number of repetitions
-func (c Character) Blink(pad *launchpad.Launchpad, colorA, colorB Color, duration time.Duration, repeats int) {
+func (c Character) Blink(pad *launchpad.Launchpad, colorA, colorB widgets.Color, duration time.Duration, repeats int) {
 	for r := 0; r < repeats; r++ {
 		if r%2 == 0 {
 			c.Paint(pad, colorA)
@@ -169,7 +142,7 @@ const (
 
 // Scroll scrolls a character
 // duration int     Duration of transition
-func (c Character) Scroll(pad *launchpad.Launchpad, color Color, direction Direction, duration time.Duration) {
+func (c Character) Scroll(pad *launchpad.Launchpad, color widgets.Color, direction Direction, duration time.Duration) {
 	var xoff, yoff int
 	switch direction {
 	case DirectionRightToLeft:
@@ -193,7 +166,7 @@ func (c Character) Scroll(pad *launchpad.Launchpad, color Color, direction Direc
 			c.Paint(pad, color)
 			time.Sleep(duration)
 		} else {
-			c.Paint(pad, Off)
+			c.Paint(pad, widgets.ColorOff)
 		}
 	}
 }

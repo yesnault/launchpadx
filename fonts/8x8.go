@@ -1,9 +1,13 @@
 package fonts
 
+import (
+	"github.com/yesnault/launchpadx/widgets"
+)
+
 // Size8x8 return a 8 per 8 pixels font
 func Size8x8() Font {
 	return Font{
-		Size: Size{Height: 8, Width: 8},
+		Size: widgets.Size{Height: 8, Width: 8},
 		CharSet: map[rune]Character{
 			'a': Character{
 				Hits: process([]string{

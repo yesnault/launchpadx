@@ -15,8 +15,10 @@ import (
 	"math/rand"
 
 	"github.com/rakyll/launchpad"
+
 	"github.com/yesnault/launchpadx/buttons"
 	"github.com/yesnault/launchpadx/fonts"
+	"github.com/yesnault/launchpadx/widgets"
 )
 
 
@@ -55,42 +57,41 @@ func main() {
 
 ```
 
-### Text
+### Draw a Text
 
 ```go
 [...]
 
 text := fonts.NewText("foobar", fonts.DirectionLeftToRight, fonts.Size8x8())
-text.Scroll(pad, fonts.RedFull, fonts.DirectionRightToLeft, 100*time.Millisecond)
+text.Scroll(pad, widgets.ColorRedFull, fonts.DirectionRightToLeft, 100*time.Millisecond)
 
 [...]
 ```
 
 
-## Manipulate a character
+## Draw a character
 
 ```go
 // initialize the font
 f := fonts.Size8x8()
 
 // paint a character
-f.CharSet["a"].Paint(pad, fonts.GreenFull)
+f.CharSet["a"].Paint(pad, widgets.ColorGreenFull)
 
 // blink a character, 100ms transition, 15 repeats between two colors
-f.CharSet["b"].Blink(pad, fonts.RedFull, fonts.Off, 100*time.Millisecond, 15)
+f.CharSet["b"].Blink(pad, widgets.ColorRedFull, widgets.ColorOff, 100*time.Millisecond, 15)
 
 // Scroll a character, 500ms transition
-f.CharSet["c"].Scroll(pad, fonts.RedFull, fonts.DirectionTopToBottom, 500*time.Millisecond)
+f.CharSet["c"].Scroll(pad, widgets.ColorRedFull, fonts.DirectionTopToBottom, 500*time.Millisecond)
 
 ```
 
-## TODO
+## Draw a rectangle
 
-- [x] Blink
-- [x] Scrolling
-- [ ] Font 8x8 more symbols
-- [x] Font 4x4
-- [x] Text Display
+```go
+r := widgets.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 8, Height: 8}
+r.Paint(pad, widgets.ColorGreenFull, 10*time.Millisecond)
+```
 
 ## Links
 

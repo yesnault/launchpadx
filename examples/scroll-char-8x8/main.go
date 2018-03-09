@@ -5,8 +5,10 @@ import (
 	"time"
 
 	"github.com/rakyll/launchpad"
+
 	"github.com/yesnault/launchpadx/buttons"
 	"github.com/yesnault/launchpadx/fonts"
+	"github.com/yesnault/launchpadx/widgets"
 )
 
 func main() {
@@ -33,7 +35,7 @@ func main() {
 			fmt.Println("pressed:", hit)
 
 			// scroll horizontally, right to left
-			f.CharSet[btn.Name].Scroll(pad, fonts.RedFull, fonts.DirectionTopToBottom, 500*time.Millisecond)
+			f.CharSet[btn.Name].Scroll(pad, widgets.ColorRedFull, fonts.DirectionTopToBottom, 500*time.Millisecond)
 		} else {
 			fmt.Println("pressed (not a button):", hit)
 		}
