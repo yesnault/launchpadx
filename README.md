@@ -61,7 +61,7 @@ func main() {
 [...]
 
 text := padx.Text("foobar", padx.DirectionLeftToRight, padx.Widgets8x8())
-text.Scroll(pad, padx.ColorRedFull, padx.DirectionRightToLeft, 100*time.Millisecond)
+text.Move(pad, -text.Width, 0, padx.ColorRedFull, 500*time.Millisecond)
 
 [...]
 ```
@@ -79,9 +79,9 @@ f.Widgets["a"].Paint(pad, padx.ColorGreenFull)
 // blink a character, 100ms transition, 15 repeats between two colors
 f.Widgets["b"].Blink(pad, padx.ColorRedFull, padx.ColorOff, 100*time.Millisecond, 15)
 
-// Scroll a character, 500ms transition
-f.Widgets["c"].Scroll(pad, padx.ColorRedFull, padx.DirectionTopToBottom, 500*time.Millisecond)
-
+// Move a character, 500ms transition
+c := f.Widgets["c"]
+c.Move(pad, -text.Width, 0, padx.ColorRedFull, 500*time.Millisecond)
 ```
 
 ## Draw a point
@@ -101,7 +101,7 @@ r.Clear(pad, 15*time.Millisecond)
 
 r2 := padx.Rectangle(0, 0, 2, 2)
 r2.Paint(pad, padx.ColorGreenFull, 10*time.Millisecond)
-r2.MoveTo(pad, 6, 6, padx.ColorGreenFull, 300*time.Millisecond)
+r2.Move(pad, 6, 6, padx.ColorGreenFull, 300*time.Millisecond)
 ```
 
 ## Custom Draw
@@ -119,7 +119,7 @@ c := padx.NewCustom([]string{
 c.Paint(pad, padx.ColorRedFull, 0)
 time.Sleep(100*time.Millisecond)
 
-c.MoveTo(pad, 2, 1, padx.ColorGreenFull, 100*time.Millisecond)
+c.Move(pad, 2, 1, padx.ColorGreenFull, 100*time.Millisecond)
 ```
 
 ## Links
