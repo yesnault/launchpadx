@@ -60,7 +60,7 @@ func main() {
 ```go
 [...]
 
-text := padx.NewText("foobar", padx.DirectionLeftToRight, padx.Widgets8x8())
+text := padx.Text("foobar", padx.DirectionLeftToRight, padx.Widgets8x8())
 text.Scroll(pad, padx.ColorRedFull, padx.DirectionRightToLeft, 100*time.Millisecond)
 
 [...]
@@ -84,16 +84,22 @@ f.Widgets["c"].Scroll(pad, padx.ColorRedFull, padx.DirectionTopToBottom, 500*tim
 
 ```
 
+## Draw a point
+
+```go
+padx.Point(5, 3).Paint(pad, padx.ColorRedFull, 0)
+```
+
 ## Draw a rectangle
 
 ```go
-r := padx.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 8, Height: 8}
+r := padx.Rectangle(0, 0, 8, 8)
 r.Paint(pad, padx.ColorGreenFull, 10*time.Millisecond)
 
 fmt.Println("Then clear rectangle with 15ms transition between each pixel")
 r.Clear(pad, 15*time.Millisecond)
 
-r2 := padx.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 2, Height: 2}
+r2 := padx.Rectangle(0, 0, 2, 2)
 r2.Paint(pad, padx.ColorGreenFull, 10*time.Millisecond)
 r2.ScrollTo(pad, launchpad.Hit{X: 6, Y: 6}, padx.ColorGreenFull, 300*time.Millisecond)
 ```

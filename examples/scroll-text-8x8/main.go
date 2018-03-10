@@ -6,7 +6,7 @@ import (
 
 	"github.com/rakyll/launchpad"
 
-	padx "github.com/yesnault/launchpadx"
+	"github.com/yesnault/launchpadx"
 )
 
 func main() {
@@ -16,26 +16,19 @@ func main() {
 	}
 	defer pad.Close()
 
-	fmt.Println("Press a button a-h (vertical) or 1-8 (horizontal) on the launchpad")
-
 	pad.Clear()
-	ch := pad.Listen()
-	text := padx.NewText("foobar", padx.DirectionLeftToRight, padx.Widgets8x8())
-	for {
-		hit := <-ch
-		pad.Clear()
 
-		// check if the key is a menu button : a-h, 1-8
-		if btn := padx.Get(hit); btn != nil {
-			// it's a 'button'
+	text := padx.Text("foobar", padx.DirectionLeftToRight, padx.Widgets8x8(), 8, 0)
+	pad.Clear()
 
-			// display the key pressed
-			fmt.Println("pressed:", hit)
+	text.Paint(pad, padx.ColorRedFull, 0)
+	time.Sleep(100 * time.Millisecond)
 
-			// scroll horizontally, right to left
-			text.Scroll(pad, padx.ColorRedFull, padx.DirectionRightToLeft, 100*time.Millisecond)
-		} else {
-			fmt.Println("pressed (not a button):", hit)
-		}
-	}
+	// from right to left
+	text.ScrollTo(pad, launchpad.Hit{X: -text.Width, Y: 0}, padx.ColorRedFull, 100*time.Millisecond)
+
+	// from left to right
+	text.ScrollTo(pad, launchpad.Hit{X: text.Width, Y: 0}, padx.ColorRedFull, 100*time.Millisecond)
+
+	time.Sleep(100 * time.Millisecond)
 }

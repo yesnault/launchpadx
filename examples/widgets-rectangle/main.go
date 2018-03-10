@@ -6,7 +6,7 @@ import (
 
 	"github.com/rakyll/launchpad"
 
-	padx "github.com/yesnault/launchpadx"
+	"github.com/yesnault/launchpadx"
 )
 
 func main() {
@@ -18,20 +18,20 @@ func main() {
 	pad.Clear()
 
 	// draw 4 squares, "Russian dolls"
-	padx.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 8, Height: 8}.Paint(pad, padx.ColorGreenFull, 10*time.Millisecond)
-	padx.Rectangle{P: launchpad.Hit{X: 1, Y: 1}, Width: 6, Height: 6}.Paint(pad, padx.ColorRedFull, 20*time.Millisecond)
-	padx.Rectangle{P: launchpad.Hit{X: 2, Y: 2}, Width: 4, Height: 4}.Paint(pad, padx.ColorYellowFull, 50*time.Millisecond)
-	padx.Rectangle{P: launchpad.Hit{X: 3, Y: 3}, Width: 2, Height: 2}.Paint(pad, padx.ColorAmberFull, 100*time.Millisecond)
+	padx.Rectangle(0, 0, 8, 8).Paint(pad, padx.ColorGreenFull, 10*time.Millisecond)
+	padx.Rectangle(1, 1, 6, 6).Paint(pad, padx.ColorRedFull, 20*time.Millisecond)
+	padx.Rectangle(2, 2, 4, 4).Paint(pad, padx.ColorYellowFull, 50*time.Millisecond)
+	padx.Rectangle(3, 3, 2, 2).Paint(pad, padx.ColorAmberFull, 100*time.Millisecond)
 
 	time.Sleep(1 * time.Second)
 
 	fmt.Println("Then clear all with 15ms transition between each pixel")
-	padx.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 8, Height: 8}.Clear(pad, 15*time.Millisecond)
+	padx.Rectangle(0, 0, 8, 8).Clear(pad, 15*time.Millisecond)
 
 	time.Sleep(1 * time.Second)
 
 	// and move a rectangle
-	r := padx.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 2, Height: 2}
+	r := padx.Rectangle(0, 0, 2, 2)
 	r.Paint(pad, padx.ColorGreenFull, 10*time.Millisecond)
 
 	time.Sleep(300 * time.Millisecond)

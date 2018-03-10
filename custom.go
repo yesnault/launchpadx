@@ -6,6 +6,16 @@ import (
 	"github.com/rakyll/launchpad"
 )
 
+// Custom represents a custom widget and all its hits (x, y) for behing paint
+type Custom struct {
+	OffsetX int
+	OffsetY int
+	Width   int
+	Height  int
+	Hits    []launchpad.Hit
+}
+
+// NewCustom initializes a custom widget
 func NewCustom(lines []string) Custom {
 	hits := []launchpad.Hit{}
 	for y, line := range lines {
@@ -24,13 +34,18 @@ func NewCustom(lines []string) Custom {
 }
 
 // Paint colors a custom widget on launchpad
-func (c Custom) Paint(pad *launchpad.Launchpad, color Color, d time.Duration) {
+func (c Custom) Paint(pad *launchpad.Launchpad, color Color, d time.Duration) []launchpad.Hit {
+	hits := []launchpad.Hit{}
 	for _, h := range c.Hits {
-		if h.X+c.OffsetX >= 0 && h.X+c.OffsetX < 8 && h.Y+c.OffsetY >= 0 && h.Y+c.OffsetY < 8 {
-			pad.Light(h.X+c.OffsetX, h.Y+c.OffsetY, color.Green, color.Red)
+		x := h.X + c.OffsetX
+		y := h.Y + c.OffsetY
+		if x >= 0 && x < 8 && y >= 0 && y < 8 {
+			pad.Light(x, y, color.Green, color.Red)
+			hits = append(hits, launchpad.Hit{X: x, Y: y})
+			time.Sleep(d)
 		}
-		time.Sleep(d)
 	}
+	return hits
 }
 
 // Clear paint a custom widget with colorOff
@@ -53,37 +68,51 @@ func (c Custom) Blink(pad *launchpad.Launchpad, colorA, colorB Color, duration t
 }
 
 // ScrollTo scroll custom widget to another position
-func (c Custom) ScrollTo(pad *launchpad.Launchpad, to launchpad.Hit, color Color, d time.Duration) {
+func (c *Custom) ScrollTo(pad *launchpad.Launchpad, to launchpad.Hit, color Color, d time.Duration) {
+	for m := 1; m <= c.Width*3; m++ {
+		newPos := launchpad.Hit{X: c.OffsetX, Y: c.OffsetY}
+		if to.X > c.OffsetX {
+			newPos.X = c.OffsetX + 1
+		} else if to.X < c.OffsetX {
+			newPos.X = c.OffsetX - 1
+		}
 
-}
+		if to.Y > c.OffsetY {
+			newPos.Y = c.OffsetY + 1
+		} else if to.Y < c.OffsetY {
+			newPos.Y = c.OffsetY - 1
+		}
 
-// Scroll scrolls a custom widget
-// duration int     Duration of transition
-func (c Custom) Scroll(pad *launchpad.Launchpad, color Color, direction Direction, duration time.Duration) {
-	var xoff, yoff int
-	switch direction {
-	case DirectionRightToLeft:
-		c.OffsetX = 8
-		xoff = -1
-	case DirectionLeftToRight:
-		c.OffsetX = -8
-		xoff = 1
-	case DirectionBottomToTop:
-		c.OffsetY = 8
-		yoff = -1
-	case DirectionTopToBottom:
-		c.OffsetY = -8
-		yoff = 1
-	}
+		originalX := c.OffsetX
+		originalY := c.OffsetY
 
-	for r := 0; r < 28; r++ {
-		if r%2 == 0 {
-			c.OffsetX += xoff
-			c.OffsetY += yoff
-			c.Paint(pad, color, 0)
-			time.Sleep(duration)
-		} else {
-			c.Paint(pad, ColorOff, 0)
+		c.OffsetX = newPos.X
+		c.OffsetY = newPos.Y
+		hits := c.Paint(pad, color, 0)
+
+		for x := originalX; x < originalX+c.Width; x++ {
+			for y := originalY; y < originalY+c.Height; y++ {
+				var isOn bool
+				for _, hit := range hits {
+					if hit.X == x && hit.Y == y {
+						// do not off this led
+						isOn = true
+					}
+				}
+				if !isOn && x >= 0 && x < 8 && y >= 0 && y < 8 {
+					pad.Light(x, y, 0, 0)
+				}
+
+			}
+		}
+		time.Sleep(d)
+		c.OffsetX = newPos.X
+		c.OffsetY = newPos.Y
+		if c.OffsetX == to.X && c.OffsetY == to.Y {
+			// destination reached
+			break
 		}
 	}
+	c.OffsetX = to.X
+	c.OffsetY = to.Y
 }

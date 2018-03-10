@@ -6,7 +6,7 @@ import (
 
 	"github.com/rakyll/launchpad"
 
-	padx "github.com/yesnault/launchpadx"
+	"github.com/yesnault/launchpadx"
 )
 
 func main() {

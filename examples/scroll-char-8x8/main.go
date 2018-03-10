@@ -6,7 +6,7 @@ import (
 
 	"github.com/rakyll/launchpad"
 
-	padx "github.com/yesnault/launchpadx"
+	"github.com/yesnault/launchpadx"
 )
 
 func main() {
@@ -33,7 +33,10 @@ func main() {
 			fmt.Println("pressed:", hit)
 
 			// scroll horizontally, right to left
-			f.Widgets[btn.Name].Scroll(pad, padx.ColorRedFull, padx.DirectionTopToBottom, 500*time.Millisecond)
+			w := f.Widgets[btn.Name]
+			w.OffsetX = 0
+			w.OffsetY = -8
+			w.ScrollTo(pad, launchpad.Hit{X: 0, Y: 16}, padx.ColorRedFull, 500*time.Millisecond)
 		} else {
 			fmt.Println("pressed (not a button):", hit)
 		}
