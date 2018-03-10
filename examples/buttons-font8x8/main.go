@@ -7,7 +7,6 @@ import (
 	"github.com/rakyll/launchpad"
 
 	"github.com/yesnault/launchpadx/buttons"
-	"github.com/yesnault/launchpadx/fonts"
 	"github.com/yesnault/launchpadx/widgets"
 )
 
@@ -21,7 +20,7 @@ func main() {
 	fmt.Println("Press a button a-h (vertical) or 1-8 (horizontal) on the launchpad")
 
 	pad.Clear()
-	f := fonts.Size8x8()
+	f := widgets.Widgets8x8()
 	ch := pad.Listen()
 	for {
 		hit := <-ch
@@ -37,7 +36,7 @@ func main() {
 			// display the key pressed
 			fmt.Println("pressed:", hit, "with color:", color.Name)
 
-			f.CharSet[btn.Name].Paint(pad, color)
+			f.Widgets[btn.Name].Paint(pad, color, 0)
 		} else {
 			fmt.Println("pressed (not a button):", hit)
 		}

@@ -7,7 +7,6 @@ import (
 	"github.com/rakyll/launchpad"
 
 	"github.com/yesnault/launchpadx/buttons"
-	"github.com/yesnault/launchpadx/fonts"
 	"github.com/yesnault/launchpadx/widgets"
 )
 
@@ -22,7 +21,7 @@ func main() {
 
 	pad.Clear()
 	ch := pad.Listen()
-	text := fonts.NewText("foobar", fonts.DirectionLeftToRight, fonts.Size4x4())
+	text := widgets.NewText("foobar", widgets.DirectionLeftToRight, widgets.Widgets4x4())
 	for {
 		hit := <-ch
 		pad.Clear()
@@ -35,7 +34,7 @@ func main() {
 			fmt.Println("pressed:", hit)
 
 			// scroll horizontally, right to left
-			text.Scroll(pad, widgets.ColorRedFull, fonts.DirectionRightToLeft, 100*time.Millisecond)
+			text.Scroll(pad, widgets.ColorRedFull, widgets.DirectionRightToLeft, 100*time.Millisecond)
 		} else {
 			fmt.Println("pressed (not a button):", hit)
 		}

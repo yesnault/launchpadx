@@ -6,10 +6,20 @@ import (
 	"github.com/rakyll/launchpad"
 )
 
-type widget interface {
+// Widget have to be implemented by widget
+type Widget interface {
 	Paint(pad *launchpad.Launchpad, color Color, d time.Duration)
 	Clear(pad *launchpad.Launchpad, d time.Duration)
 	ScrollTo(pad *launchpad.Launchpad, to launchpad.Hit, color Color, d time.Duration)
+}
+
+// Custom represents a custom widget and all its hits (x, y) for behing paint
+type Custom struct {
+	OffsetX int
+	OffsetY int
+	Width   int
+	Height  int
+	Hits    []launchpad.Hit
 }
 
 // Size of the font definition

@@ -17,7 +17,6 @@ import (
 	"github.com/rakyll/launchpad"
 
 	"github.com/yesnault/launchpadx/buttons"
-	"github.com/yesnault/launchpadx/fonts"
 	"github.com/yesnault/launchpadx/widgets"
 )
 
@@ -32,7 +31,7 @@ func main() {
 	fmt.Println("Press a button a-h (vertical) or 1-8 (horizontal) on the launchpad")
 
 	pad.Clear()
-	f := fonts.Size8x8()
+	f := widgets.Widgets8x8()
 	ch := pad.Listen()
 	for {
 		hit := <-ch
@@ -43,12 +42,12 @@ func main() {
 			// it's a 'button'
 
 			// get a random color
-			color := fonts.Colors[rand.Intn(len(fonts.Colors))]
+			color := widgets.Colors[rand.Intn(len(widgets.Colors))]
 
 			// display the key pressed
 			fmt.Println("pressed:", hit, "with color:", color.Name)
 
-			f.CharSet[btn.Name].Paint(pad, color)
+			f.Widgets[btn.Name].Paint(pad, color, 0)
 		} else {
 			fmt.Println("pressed (not a button):", hit)
 		}
@@ -62,8 +61,8 @@ func main() {
 ```go
 [...]
 
-text := fonts.NewText("foobar", fonts.DirectionLeftToRight, fonts.Size8x8())
-text.Scroll(pad, widgets.ColorRedFull, fonts.DirectionRightToLeft, 100*time.Millisecond)
+text := widgets.NewText("foobar", widgets.DirectionLeftToRight, widgets.Widgets8x8())
+text.Scroll(pad, widgets.ColorRedFull, widgets.DirectionRightToLeft, 100*time.Millisecond)
 
 [...]
 ```
@@ -73,16 +72,16 @@ text.Scroll(pad, widgets.ColorRedFull, fonts.DirectionRightToLeft, 100*time.Mill
 
 ```go
 // initialize the font
-f := fonts.Size8x8()
+f := widgets.Widgets8x8()
 
 // paint a character
-f.CharSet["a"].Paint(pad, widgets.ColorGreenFull)
+f.Widgets["a"].Paint(pad, widgets.ColorGreenFull)
 
 // blink a character, 100ms transition, 15 repeats between two colors
-f.CharSet["b"].Blink(pad, widgets.ColorRedFull, widgets.ColorOff, 100*time.Millisecond, 15)
+f.Widgets["b"].Blink(pad, widgets.ColorRedFull, widgets.ColorOff, 100*time.Millisecond, 15)
 
 // Scroll a character, 500ms transition
-f.CharSet["c"].Scroll(pad, widgets.ColorRedFull, fonts.DirectionTopToBottom, 500*time.Millisecond)
+f.Widgets["c"].Scroll(pad, widgets.ColorRedFull, widgets.DirectionTopToBottom, 500*time.Millisecond)
 
 ```
 

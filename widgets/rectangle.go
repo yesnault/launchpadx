@@ -1,7 +1,6 @@
 package widgets
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/rakyll/launchpad"
@@ -75,8 +74,5 @@ func (r *Rectangle) ScrollTo(pad *launchpad.Launchpad, to launchpad.Hit, color C
 			break
 		}
 	}
-
 	r.P = to
-
-	fmt.Println("done")
 }
