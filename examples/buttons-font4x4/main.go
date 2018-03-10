@@ -6,8 +6,7 @@ import (
 
 	"github.com/rakyll/launchpad"
 
-	"github.com/yesnault/launchpadx/buttons"
-	"github.com/yesnault/launchpadx/widgets"
+	padx "github.com/yesnault/launchpadx"
 )
 
 func main() {
@@ -20,18 +19,18 @@ func main() {
 	fmt.Println("Press a button a-h (vertical) or 1-8 (horizontal) on the launchpad")
 
 	pad.Clear()
-	f := widgets.Widgets4x4()
+	f := padx.Widgets4x4()
 	ch := pad.Listen()
 	for {
 		hit := <-ch
 		pad.Clear()
 
 		// check if the key is a menu button : a-h, 1-8
-		if btn := buttons.Get(hit); btn != nil {
+		if btn := padx.Get(hit); btn != nil {
 			// it's a 'button'
 
 			// get a random color
-			color := widgets.Colors[rand.Intn(len(widgets.Colors))]
+			color := padx.Colors[rand.Intn(len(padx.Colors))]
 
 			// display the key pressed
 			fmt.Println("pressed:", hit, "with color:", color.Name)

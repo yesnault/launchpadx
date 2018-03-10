@@ -6,8 +6,7 @@ import (
 
 	"github.com/rakyll/launchpad"
 
-	"github.com/yesnault/launchpadx/buttons"
-	"github.com/yesnault/launchpadx/widgets"
+	padx "github.com/yesnault/launchpadx"
 )
 
 func main() {
@@ -21,20 +20,20 @@ func main() {
 
 	pad.Clear()
 	ch := pad.Listen()
-	text := widgets.NewText("foobar", widgets.DirectionLeftToRight, widgets.Widgets4x4())
+	text := padx.NewText("foobar", padx.DirectionLeftToRight, padx.Widgets4x4())
 	for {
 		hit := <-ch
 		pad.Clear()
 
 		// check if the key is a menu button : a-h, 1-8
-		if btn := buttons.Get(hit); btn != nil {
+		if btn := padx.Get(hit); btn != nil {
 			// it's a 'button'
 
 			// display the key pressed
 			fmt.Println("pressed:", hit)
 
 			// scroll horizontally, right to left
-			text.Scroll(pad, widgets.ColorRedFull, widgets.DirectionRightToLeft, 100*time.Millisecond)
+			text.Scroll(pad, padx.ColorRedFull, padx.DirectionRightToLeft, 100*time.Millisecond)
 		} else {
 			fmt.Println("pressed (not a button):", hit)
 		}

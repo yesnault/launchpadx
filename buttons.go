@@ -1,4 +1,4 @@
-package buttons
+package padx
 
 import (
 	"github.com/rakyll/launchpad"

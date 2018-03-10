@@ -16,8 +16,7 @@ import (
 
 	"github.com/rakyll/launchpad"
 
-	"github.com/yesnault/launchpadx/buttons"
-	"github.com/yesnault/launchpadx/widgets"
+	padx "github.com/yesnault/launchpadx"
 )
 
 
@@ -31,7 +30,7 @@ func main() {
 	fmt.Println("Press a button a-h (vertical) or 1-8 (horizontal) on the launchpad")
 
 	pad.Clear()
-	f := widgets.Widgets8x8()
+	f := padx.Widgets8x8()
 	ch := pad.Listen()
 	for {
 		hit := <-ch
@@ -42,7 +41,7 @@ func main() {
 			// it's a 'button'
 
 			// get a random color
-			color := widgets.Colors[rand.Intn(len(widgets.Colors))]
+			color := padx.Colors[rand.Intn(len(padx.Colors))]
 
 			// display the key pressed
 			fmt.Println("pressed:", hit, "with color:", color.Name)
@@ -61,8 +60,8 @@ func main() {
 ```go
 [...]
 
-text := widgets.NewText("foobar", widgets.DirectionLeftToRight, widgets.Widgets8x8())
-text.Scroll(pad, widgets.ColorRedFull, widgets.DirectionRightToLeft, 100*time.Millisecond)
+text := padx.NewText("foobar", padx.DirectionLeftToRight, padx.Widgets8x8())
+text.Scroll(pad, padx.ColorRedFull, padx.DirectionRightToLeft, 100*time.Millisecond)
 
 [...]
 ```
@@ -72,31 +71,31 @@ text.Scroll(pad, widgets.ColorRedFull, widgets.DirectionRightToLeft, 100*time.Mi
 
 ```go
 // initialize the font
-f := widgets.Widgets8x8()
+f := padx.Widgets8x8()
 
 // paint a character
-f.Widgets["a"].Paint(pad, widgets.ColorGreenFull)
+f.Widgets["a"].Paint(pad, padx.ColorGreenFull)
 
 // blink a character, 100ms transition, 15 repeats between two colors
-f.Widgets["b"].Blink(pad, widgets.ColorRedFull, widgets.ColorOff, 100*time.Millisecond, 15)
+f.Widgets["b"].Blink(pad, padx.ColorRedFull, padx.ColorOff, 100*time.Millisecond, 15)
 
 // Scroll a character, 500ms transition
-f.Widgets["c"].Scroll(pad, widgets.ColorRedFull, widgets.DirectionTopToBottom, 500*time.Millisecond)
+f.Widgets["c"].Scroll(pad, padx.ColorRedFull, padx.DirectionTopToBottom, 500*time.Millisecond)
 
 ```
 
 ## Draw a rectangle
 
 ```go
-r := widgets.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 8, Height: 8}
-r.Paint(pad, widgets.ColorGreenFull, 10*time.Millisecond)
+r := padx.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 8, Height: 8}
+r.Paint(pad, padx.ColorGreenFull, 10*time.Millisecond)
 
 fmt.Println("Then clear rectangle with 15ms transition between each pixel")
 r.Clear(pad, 15*time.Millisecond)
 
-r2 := widgets.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 2, Height: 2}
-r2.Paint(pad, widgets.ColorGreenFull, 10*time.Millisecond)
-r2.ScrollTo(pad, launchpad.Hit{X: 6, Y: 6}, widgets.ColorGreenFull, 300*time.Millisecond)
+r2 := padx.Rectangle{P: launchpad.Hit{X: 0, Y: 0}, Width: 2, Height: 2}
+r2.Paint(pad, padx.ColorGreenFull, 10*time.Millisecond)
+r2.ScrollTo(pad, launchpad.Hit{X: 6, Y: 6}, padx.ColorGreenFull, 300*time.Millisecond)
 ```
 
 ## Links

@@ -1,4 +1,4 @@
-package widgets
+package padx
 
 // Widgets4x4 return a 8 per 8 pixels widgets
 func Widgets4x4() Font {
