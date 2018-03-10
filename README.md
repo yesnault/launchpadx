@@ -101,7 +101,7 @@ r.Clear(pad, 15*time.Millisecond)
 
 r2 := padx.Rectangle(0, 0, 2, 2)
 r2.Paint(pad, padx.ColorGreenFull, 10*time.Millisecond)
-r2.ScrollTo(pad, launchpad.Hit{X: 6, Y: 6}, padx.ColorGreenFull, 300*time.Millisecond)
+r2.ScrollTo(pad, 6, 6, padx.ColorGreenFull, 300*time.Millisecond)
 ```
 
 ## Custom Draw
