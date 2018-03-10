@@ -25,10 +25,10 @@ func main() {
 	time.Sleep(100 * time.Millisecond)
 
 	// from right to left
-	text.ScrollTo(pad, -text.Width, 0, padx.ColorRedFull, 100*time.Millisecond)
+	text.Move(pad, -text.Width, 0, padx.ColorRedFull, 100*time.Millisecond)
 
 	// from left to right
-	text.ScrollTo(pad, text.Width, 0, padx.ColorRedFull, 100*time.Millisecond)
+	text.Move(pad, text.Width, 0, padx.ColorRedFull, 100*time.Millisecond)
 
 	time.Sleep(100 * time.Millisecond)
 }

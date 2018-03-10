@@ -30,6 +30,6 @@ func main() {
 
 	time.Sleep(1 * time.Second)
 
-	c.ScrollTo(pad, 2, 1, padx.ColorGreenFull, 100*time.Millisecond)
+	c.Move(pad, 2, 1, padx.ColorGreenFull, 100*time.Millisecond)
 	time.Sleep(1 * time.Second)
 }

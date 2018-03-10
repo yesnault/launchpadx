@@ -36,16 +36,16 @@ func main() {
 
 	time.Sleep(300 * time.Millisecond)
 
-	r.ScrollTo(pad, 6, 6, padx.ColorGreenFull, 300*time.Millisecond)
+	r.Move(pad, 6, 6, padx.ColorGreenFull, 300*time.Millisecond)
 	time.Sleep(300 * time.Millisecond)
 
-	r.ScrollTo(pad, 1, 3, padx.ColorYellowFull, 300*time.Millisecond)
+	r.Move(pad, 1, 3, padx.ColorYellowFull, 300*time.Millisecond)
 	time.Sleep(300 * time.Millisecond)
 
-	r.ScrollTo(pad, 5, 3, padx.ColorYellowFull, 300*time.Millisecond)
+	r.Move(pad, 5, 3, padx.ColorYellowFull, 300*time.Millisecond)
 	time.Sleep(300 * time.Millisecond)
 
-	r.ScrollTo(pad, 3, 3, padx.ColorRedFull, 300*time.Millisecond)
+	r.Move(pad, 3, 3, padx.ColorRedFull, 300*time.Millisecond)
 
 	time.Sleep(300 * time.Millisecond)
 }

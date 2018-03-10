@@ -23,7 +23,7 @@ func main() {
 	w.Paint(pad, padx.ColorGreenFull, 0)
 	time.Sleep(300 * time.Millisecond)
 
-	w.ScrollTo(pad, 5, 4, padx.ColorGreenFull, 300*time.Millisecond)
+	w.Move(pad, 5, 4, padx.ColorGreenFull, 300*time.Millisecond)
 
 	time.Sleep(1 * time.Second)
 }

@@ -36,7 +36,7 @@ func main() {
 			w := f.Widgets[btn.Name]
 			w.OffsetX = 0
 			w.OffsetY = -8
-			w.ScrollTo(pad, 0, 16, padx.ColorRedFull, 500*time.Millisecond)
+			w.Move(pad, 0, 16, padx.ColorRedFull, 500*time.Millisecond)
 		} else {
 			fmt.Println("pressed (not a button):", hit)
 		}

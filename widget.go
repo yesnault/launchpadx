@@ -15,5 +15,5 @@ type Font struct {
 type Widget interface {
 	Paint(pad *launchpad.Launchpad, color Color, d time.Duration)
 	Clear(pad *launchpad.Launchpad, d time.Duration)
-	ScrollTo(pad *launchpad.Launchpad, to launchpad.Hit, color Color, d time.Duration)
+	Move(pad *launchpad.Launchpad, to launchpad.Hit, color Color, d time.Duration)
 }

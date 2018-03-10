@@ -24,7 +24,7 @@ func main() {
 	text.Paint(pad, padx.ColorRedFull, 0)
 	time.Sleep(100 * time.Millisecond)
 
-	text.ScrollTo(pad, -text.Width, 0, padx.ColorRedFull, 100*time.Millisecond)
+	text.Move(pad, -text.Width, 0, padx.ColorRedFull, 100*time.Millisecond)
 
 	time.Sleep(100 * time.Millisecond)
 }
