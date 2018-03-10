@@ -104,6 +104,24 @@ r2.Paint(pad, padx.ColorGreenFull, 10*time.Millisecond)
 r2.ScrollTo(pad, launchpad.Hit{X: 6, Y: 6}, padx.ColorGreenFull, 300*time.Millisecond)
 ```
 
+## Custom Draw
+
+```go
+c := padx.NewCustom([]string{
+	"--0--",
+	"--0--",
+	"00000",
+	"--0--",
+	"-0-0-",
+	"0---0",
+})
+
+c.Paint(pad, padx.ColorRedFull, 0)
+time.Sleep(100*time.Millisecond)
+
+c.ScrollTo(pad, 2, 1, padx.ColorGreenFull, 100*time.Millisecond)
+```
+
 ## Links
 
 * Rakyll Launchpad Lib: https://github.com/rakyll/launchpad

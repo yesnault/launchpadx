@@ -12,7 +12,7 @@ import (
 func main() {
 	pad, err := launchpad.Open()
 	if err != nil {
-		fmt.Printf("error while openning connection to launchpad: %v", err)
+		fmt.Printf("error while opening connection to launchpad: %v", err)
 	}
 	defer pad.Close()
 

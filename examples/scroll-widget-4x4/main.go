@@ -12,7 +12,7 @@ import (
 func main() {
 	pad, err := launchpad.Open()
 	if err != nil {
-		fmt.Printf("error while openning connection to launchpad: %v", err)
+		fmt.Printf("error while opening connection to launchpad: %v", err)
 	}
 	defer pad.Close()
 
@@ -23,7 +23,7 @@ func main() {
 	w.Paint(pad, padx.ColorGreenFull, 0)
 	time.Sleep(300 * time.Millisecond)
 
-	w.ScrollTo(pad, launchpad.Hit{X: 5, Y: 4}, padx.ColorGreenFull, 300*time.Millisecond)
+	w.ScrollTo(pad, 5, 4, padx.ColorGreenFull, 300*time.Millisecond)
 
 	time.Sleep(1 * time.Second)
 }

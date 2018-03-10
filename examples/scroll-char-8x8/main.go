@@ -12,7 +12,7 @@ import (
 func main() {
 	pad, err := launchpad.Open()
 	if err != nil {
-		fmt.Printf("error while openning connection to launchpad: %v", err)
+		fmt.Printf("error while opening connection to launchpad: %v", err)
 	}
 	defer pad.Close()
 
@@ -36,7 +36,7 @@ func main() {
 			w := f.Widgets[btn.Name]
 			w.OffsetX = 0
 			w.OffsetY = -8
-			w.ScrollTo(pad, launchpad.Hit{X: 0, Y: 16}, padx.ColorRedFull, 500*time.Millisecond)
+			w.ScrollTo(pad, 0, 16, padx.ColorRedFull, 500*time.Millisecond)
 		} else {
 			fmt.Println("pressed (not a button):", hit)
 		}

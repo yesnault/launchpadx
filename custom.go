@@ -68,18 +68,18 @@ func (c Custom) Blink(pad *launchpad.Launchpad, colorA, colorB Color, duration t
 }
 
 // ScrollTo scroll custom widget to another position
-func (c *Custom) ScrollTo(pad *launchpad.Launchpad, to launchpad.Hit, color Color, d time.Duration) {
+func (c *Custom) ScrollTo(pad *launchpad.Launchpad, toX, toY int, color Color, d time.Duration) {
 	for m := 1; m <= c.Width*3; m++ {
 		newPos := launchpad.Hit{X: c.OffsetX, Y: c.OffsetY}
-		if to.X > c.OffsetX {
+		if toX > c.OffsetX {
 			newPos.X = c.OffsetX + 1
-		} else if to.X < c.OffsetX {
+		} else if toX < c.OffsetX {
 			newPos.X = c.OffsetX - 1
 		}
 
-		if to.Y > c.OffsetY {
+		if toY > c.OffsetY {
 			newPos.Y = c.OffsetY + 1
-		} else if to.Y < c.OffsetY {
+		} else if toY < c.OffsetY {
 			newPos.Y = c.OffsetY - 1
 		}
 
@@ -108,11 +108,11 @@ func (c *Custom) ScrollTo(pad *launchpad.Launchpad, to launchpad.Hit, color Colo
 		time.Sleep(d)
 		c.OffsetX = newPos.X
 		c.OffsetY = newPos.Y
-		if c.OffsetX == to.X && c.OffsetY == to.Y {
+		if c.OffsetX == toX && c.OffsetY == toY {
 			// destination reached
 			break
 		}
 	}
-	c.OffsetX = to.X
-	c.OffsetY = to.Y
+	c.OffsetX = toX
+	c.OffsetY = toY
 }

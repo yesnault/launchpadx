@@ -17,11 +17,19 @@ func main() {
 	defer pad.Close()
 	pad.Clear()
 
-	padx.Point(0, 0).Paint(pad, padx.ColorGreenFull, 10*time.Millisecond)
-	padx.Point(5, 3).Paint(pad, padx.ColorRedFull, 10*time.Millisecond)
-	padx.Point(7, 4).Paint(pad, padx.ColorYellowFull, 10*time.Millisecond)
-	padx.Point(7, 7).Paint(pad, padx.ColorAmberFull, 10*time.Millisecond)
+	c := padx.NewCustom([]string{
+		"--0--",
+		"--0--",
+		"00000",
+		"--0--",
+		"-0-0-",
+		"0---0",
+	})
+
+	c.Paint(pad, padx.ColorRedFull, 0)
 
 	time.Sleep(1 * time.Second)
 
+	c.ScrollTo(pad, 2, 1, padx.ColorGreenFull, 100*time.Millisecond)
+	time.Sleep(1 * time.Second)
 }
